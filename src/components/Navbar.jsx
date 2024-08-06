@@ -31,6 +31,11 @@ const Navbar = () => {
 
         <ul className="md:flex items-center hidden gap-4">
           <li>
+            <NavLink to="/" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+              Home
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/allproducts" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
               All
             </NavLink>
