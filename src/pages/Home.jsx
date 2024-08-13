@@ -46,12 +46,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-12">
+      <section className="bg-gray-50 px-4 py-12">
         <div className="container mx-auto text-center">
           <h2 className="mb-6 text-3xl font-bold">Featured Products</h2>
           <div className="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid grid-cols-1 gap-6">
             {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <div className="p-4">
+                <ProductCard key={product.id} product={product} />
+              </div>
             ))}
           </div>
         </div>
