@@ -13,8 +13,8 @@ const Navbar = () => {
     setTotalQuantity(getTotalQuantity());
   }, [getTotalQuantity]);
 
-  const activeStyleDesktop = "text-black font-bold underline underline-offset-4";
-  const activeStyleMobile = "underline underline-offset-4";
+  const activeStyleDesktop = "text-white font-bold border-b-2 border-teal-500";
+  const activeStyleMobile = "border-b-2 border-teal-500";
 
   const toggleMobileMenu = () => {
     setMobileNav(prev => !prev);
@@ -22,49 +22,49 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="md:px-8 md:py-5 top-0 z-10 flex items-center justify-between w-full px-4 py-4 text-sm font-light bg-white border-b-2">
+      <nav className="md:px-8 md:py-5 top-0 z-10 flex items-center justify-between w-full px-4 py-4 text-sm font-light text-white bg-gray-900 shadow-lg">
         <div className="flex items-center gap-4">
-          <NavLink to="/" className="text-lg font-semibold">
+          <NavLink to="/" className="hover:text-teal-400 text-lg font-semibold text-teal-500 transition-colors duration-300">
             Shopi
           </NavLink>
         </div>
 
-        <ul className="md:flex items-center hidden gap-4">
+        <ul className="md:flex items-center hidden gap-6">
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/allproducts" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/allproducts" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               All
             </NavLink>
           </li>
           <li>
-            <NavLink to="/mens_clothing" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/mens_clothing" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               Men's Clothing
             </NavLink>
           </li>
           <li>
-            <NavLink to="/womens_clothing" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/womens_clothing" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               Women's Clothing
             </NavLink>
           </li>
           <li>
-            <NavLink to="/jewelery" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/jewelery" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               Jewelery
             </NavLink>
           </li>
           <li>
-            <NavLink to="/electronics" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/electronics" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               Electronics
             </NavLink>
           </li>
         </ul>
 
-        <ul className="md:flex items-center hidden gap-4">
+        <ul className="md:flex items-center hidden gap-6">
           <li>
-            <NavLink to="/myorder" className={({ isActive }) => (isActive ? activeStyleDesktop : undefined)}>
+            <NavLink to="/myorder" className={({ isActive }) => (isActive ? activeStyleDesktop : "hover:text-teal-400 transition-colors duration-300")}>
               My Orders
             </NavLink>
           </li>
@@ -73,13 +73,13 @@ const Navbar = () => {
               <UserButton />
             </SignedIn>
             <SignedOut>
-              <Link to="/sign-in">Sign In</Link>
+              <Link to="/sign-in" className="hover:text-teal-400 transition-colors duration-300">Sign In</Link>
             </SignedOut>
           </li>
           <li>
             <NavLink to="/cart">
               <div className="relative flex items-center gap-2">
-                <ShoppingCartIcon className="text-black-500 w-6 h-6 cursor-pointer" />
+                <ShoppingCartIcon className="hover:text-teal-400 w-6 h-6 text-teal-500 transition-colors duration-300 cursor-pointer" />
                 <span className="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
                   {totalQuantity}
                 </span>
@@ -90,53 +90,52 @@ const Navbar = () => {
 
         <div className="md:hidden flex items-center">
           <div className="relative flex items-center gap-2 mx-2">
-            <ShoppingCartIcon className="w-6 h-6 text-black cursor-pointer" />
+            <ShoppingCartIcon className="hover:text-teal-400 w-6 h-6 text-teal-500 transition-colors duration-300 cursor-pointer" />
             <span className="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
               {totalQuantity}
             </span>
           </div>
-          <button onClick={toggleMobileMenu} className="text-black-500 focus:outline-none">
-            {mobileNav ? <XMarkIcon className="text-black-500 w-6 h-6 cursor-pointer" /> : <Bars3Icon className="text-black-500 w-6 h-6 cursor-pointer" />}
+          <button onClick={toggleMobileMenu} className="focus:outline-none text-teal-500">
+            {mobileNav ? <XMarkIcon className="hover:text-teal-400 w-6 h-6 transition-colors duration-300 cursor-pointer" /> : <Bars3Icon className="hover:text-teal-400 w-6 h-6 transition-colors duration-300 cursor-pointer" />}
           </button>
         </div>
 
-        <div className={`fixed inset-y-0 left-0 w-64 bg-black text-white transform transition-transform duration-300 ease-in-out md:hidden z-20 ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className={`fixed inset-y-0 left-0 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:hidden z-20 ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}>
           <div className="flex flex-col p-4">
-            <div className='flex justify-between'>
-              <NavLink to="/" className="mb-4 text-lg font-semibold">Shopi</NavLink>
-              <button onClick={toggleMobileMenu} className="text-black-500 focus:outline-none">
-                {mobileNav ? <XMarkIcon className="text-black-500 w-6 h-6 cursor-pointer" /> : undefined}
+            <div className='flex justify-between mb-6'>
+              <NavLink to="/" className="text-lg font-semibold text-teal-500">Shopi</NavLink>
+              <button onClick={toggleMobileMenu} className="focus:outline-none">
+                <XMarkIcon className="hover:text-teal-400 w-6 h-6 text-teal-500 transition-colors duration-300 cursor-pointer" />
               </button>
-
             </div>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-6">
               <li>
-                <NavLink to="/allproducts" className={({ isActive }) => (isActive ? activeStyleMobile : undefined)}>
+                <NavLink to="/allproducts" className={({ isActive }) => (isActive ? activeStyleMobile : "hover:text-teal-400 transition-colors duration-300")}>
                   All
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/mens_clothing" className={({ isActive }) => (isActive ? activeStyleMobile : undefined)}>
+                <NavLink to="/mens_clothing" className={({ isActive }) => (isActive ? activeStyleMobile : "hover:text-teal-400 transition-colors duration-300")}>
                   Men's Clothing
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/womens_clothing" className={({ isActive }) => (isActive ? activeStyleMobile : undefined)}>
+                <NavLink to="/womens_clothing" className={({ isActive }) => (isActive ? activeStyleMobile : "hover:text-teal-400 transition-colors duration-300")}>
                   Women's Clothing
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/jewelery" className={({ isActive }) => (isActive ? activeStyleMobile : undefined)}>
+                <NavLink to="/jewelery" className={({ isActive }) => (isActive ? activeStyleMobile : "hover:text-teal-400 transition-colors duration-300")}>
                   Jewelery
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/electronics" className={({ isActive }) => (isActive ? activeStyleMobile : undefined)}>
+                <NavLink to="/electronics" className={({ isActive }) => (isActive ? activeStyleMobile : "hover:text-teal-400 transition-colors duration-300")}>
                   Electronics
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/myorder" className={({ isActive }) => (isActive ? activeStyleMobile : undefined)}>
+                <NavLink to="/myorder" className={({ isActive }) => (isActive ? activeStyleMobile : "hover:text-teal-400 transition-colors duration-300")}>
                   My Orders
                 </NavLink>
               </li>
@@ -145,13 +144,13 @@ const Navbar = () => {
                   <UserButton />
                 </SignedIn>
                 <SignedOut>
-                  <Link to="/sign-in">Sign In</Link>
+                  <Link to="/sign-in" className="hover:text-teal-400 transition-colors duration-300">Sign In</Link>
                 </SignedOut>
               </li>
               <li>
                 <NavLink to="/cart">
                   <div className="relative flex items-center gap-2">
-                    <ShoppingCartIcon className="w-6 h-6 text-white cursor-pointer" />
+                    <ShoppingCartIcon className="hover:text-teal-400 w-6 h-6 text-teal-500 transition-colors duration-300 cursor-pointer" />
                     <span className="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
                       {totalQuantity}
                     </span>

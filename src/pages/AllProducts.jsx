@@ -1,16 +1,14 @@
-import Searchbox from "../components/Searchbar"
-import ProductCard from "../components/ProductCard"
-import { useContext, useMemo, useState } from "react"
-import { ProductContext } from "../context/ProductContext"
-import LoadingPage from "./LoadingPage"
-import NoProductsPage from "./NoProductsPage"
+import Searchbox from "../components/Searchbar";
+import ProductCard from "../components/ProductCard";
+import { useContext, useMemo, useState } from "react";
+import { ProductContext } from "../context/ProductContext";
+import LoadingPage from "./LoadingPage";
+import NoProductsPage from "./NoProductsPage";
 
 const AllProducts = () => {
-
   const { products, loading } = useContext(ProductContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
-
 
   const filterProducts = useMemo(() => {
     return products
@@ -29,24 +27,25 @@ const AllProducts = () => {
       });
   }, [products, searchQuery, selectedFilter]);
 
+  if (loading) return <LoadingPage />;
 
-  if (loading) return <LoadingPage />
-
-  if (!products || products.length === 0) return <NoProductsPage />
+  if (!products || products.length === 0) return <NoProductsPage />;
 
   return (
-    <div className="w-full min-h-[70svh] px-7 mx-auto">
-      <Searchbox searchQuery={searchQuery} setSearchQuery={setSearchQuery} selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-      <div className="my-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-4">
-        {
-          filterProducts.map((product, index) => (
-            <ProductCard key={index} product={product} />
-          ))
-        }
+    <div className=" w-full min-h-screen px-8 mx-auto bg-gray-100">
+      <Searchbox
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        selectedFilter={selectedFilter}
+        setSelectedFilter={setSelectedFilter}
+      />
+      <div className="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid gap-6 my-6">
+        {filterProducts.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default AllProducts
+export default AllProducts;

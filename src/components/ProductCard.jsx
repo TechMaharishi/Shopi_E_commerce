@@ -18,13 +18,15 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div key={product.id} className="flex flex-col justify-between overflow-hidden bg-white rounded-lg shadow-md">
+    <div className="flex flex-col justify-between w-full max-w-sm overflow-hidden rounded-lg shadow-lg">
       <Link to={`/product_details/${product.id}`}>
-        <img
-          src={product.image}
-          alt={product.title}
-          className="object-fill w-full h-48 cursor-pointer"
-        />
+        <div className="p-14 relative">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="aspect-square object-contain w-full h-full"
+          />
+        </div>
       </Link>
       <div className="p-4">
         <h2 className="mb-2 text-xl font-semibold">{product.title}</h2>
@@ -35,9 +37,7 @@ const ProductCard = ({ product }) => {
         </div>
         <button
           onClick={handleAddToCart}
-          className={`flex items-center justify-center w-full gap-2 py-2 text-white transition-colors duration-300 rounded-lg ${added
-              ? "bg-green-500"
-              : "bg-black hover:bg-gray-800"
+          className={`flex items-center justify-center w-full gap-2 py-2 text-white transition-colors duration-300 rounded-lg ${added ? "bg-green-500" : "bg-black hover:bg-gray-800"
             }`}
         >
           {added ? (
